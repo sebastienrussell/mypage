@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 @Preview(showBackground = true)
 fun InfoSection(
-    modifier: Modifier = Modifier, personalInfo: PersonalInfo = PersonalInfo(
+    modifier: Modifier = Modifier,
+    personalInfo: PersonalInfo = PersonalInfo(
         name = "Sebastien Russell",
         address = "Mercier, QC, J6R 0G2",
         phone = "(438) 403-9294",
@@ -27,7 +28,10 @@ fun InfoSection(
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = personalInfo.name, style = MaterialTheme.typography.titleLarge)
+        Text(
+            text = personalInfo.name,
+            style = MaterialTheme.typography.titleLarge
+        )
         Text(text = personalInfo.address, style = MaterialTheme.typography.titleSmall)
         Text(
             text = "${personalInfo.phone} | ${personalInfo.email}",

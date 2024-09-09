@@ -22,7 +22,7 @@ fun TitleWithDateRow(
     subtitle: String = "",
     date: String = ""
 ) {
-    Row(modifier, verticalAlignment = Alignment.Top) {
+    Row(modifier, verticalAlignment = Alignment.CenterVertically) {
         Column {
             Text(
                 modifier = Modifier.fillMaxWidth(0.70F),

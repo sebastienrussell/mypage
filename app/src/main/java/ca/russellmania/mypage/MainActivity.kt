@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Wallpapers
 import ca.russellmania.mypage.ui.home.EducationSection
 import ca.russellmania.mypage.ui.home.FormationsSection
 import ca.russellmania.mypage.ui.home.InfoSection
@@ -41,6 +42,13 @@ class MainActivity : ComponentActivity() {
 @Preview(
     showBackground = true,
     showSystemUi = true,
+    device = "spec:width=411dp,height=891dp,orientation=landscape", group = "landscape",
+    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL,
+    wallpaper = Wallpapers.NONE
+)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
 fun HomeScreen(modifier: Modifier = Modifier) {
@@ -48,9 +56,9 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
             Column(
                 modifier = Modifier
+                    .verticalScroll(rememberScrollState())
                     .padding(innerPadding)
-                    .consumeWindowInsets(innerPadding)
-                    .verticalScroll(rememberScrollState()),
+                    .consumeWindowInsets(innerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 InfoSection()
