@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ca.russellmania.mypage"
+        applicationId = "ca.russellmania.sebastienrussellcv"
         minSdk = 31
         targetSdk = 34
         versionCode = 1
@@ -23,10 +23,14 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
+            isDebuggable = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isDebuggable = true
         }
     }
     compileOptions {
