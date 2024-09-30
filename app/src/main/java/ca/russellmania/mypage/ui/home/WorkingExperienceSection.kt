@@ -107,7 +107,7 @@ fun JobInfo(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(top = 8.dp)
+            .padding(top = 24.dp)
     ) {
         TitleWithDateRow(
             title = jobInfo.title,

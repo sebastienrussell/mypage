@@ -1,6 +1,8 @@
 package ca.russellmania.mypage
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -29,7 +31,24 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HomeScreen()
+            HomeScreen(
+                onClickPhoneNumber = { phoneNumber ->
+                    val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                    startActivity(intent)
+                },
+                onClickEmailAddress = { emailAddress ->
+                    val intent = Intent(Intent.ACTION_SENDTO).apply {
+                        data = Uri.parse("mailto:$emailAddress")
+                    }
+                    startActivity(intent)
+                },
+                onClickAddress = { address ->
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse("geo:0,0?q=${address.substringBeforeLast(',')}")
+                    }
+                    startActivity(intent)
+                }
+            )
         }
     }
 }
@@ -51,7 +70,12 @@ class MainActivity : ComponentActivity() {
     showSystemUi = true,
     uiMode = Configuration.UI_MODE_NIGHT_YES or Configuration.UI_MODE_TYPE_NORMAL
 )
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    onClickPhoneNumber: (phoneNumber: String) -> Unit = {},
+    onClickEmailAddress: (emailAddress: String) -> Unit = {},
+    onClickAddress: (address: String) -> Unit = {},
+) {
     MyPageTheme {
         Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
             Column(
@@ -61,7 +85,11 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     .consumeWindowInsets(innerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                InfoSection()
+                InfoSection(
+                    onClickPhoneNumber = onClickPhoneNumber,
+                    onClickEmailAddress = onClickEmailAddress,
+                    onClickAddress = onClickAddress
+                )
                 QualificationsSection()
                 WorkingExperienceSection()
                 EducationSection()
