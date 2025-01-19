@@ -4,15 +4,16 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.VmPolicy
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,6 +30,11 @@ import ca.russellmania.mypage.ui.theme.MyPageTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        StrictMode.setVmPolicy(
+            VmPolicy.Builder()
+                .detectUnsafeIntentLaunch()
+                .build()
+        )
         enableEdgeToEdge()
         setContent {
             HomeScreen(
@@ -77,23 +83,26 @@ fun HomeScreen(
     onClickAddress: (address: String) -> Unit = {},
 ) {
     MyPageTheme {
-        Scaffold(modifier = modifier.fillMaxSize()) { innerPadding ->
-            Column(
-                modifier = Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(innerPadding)
-                    .consumeWindowInsets(innerPadding),
+        Scaffold(
+            modifier = modifier.fillMaxSize(),
+            contentWindowInsets = WindowInsets.statusBars
+        ) { innerPadding ->
+            LazyColumn(
+                modifier = Modifier.consumeWindowInsets(innerPadding),
+                contentPadding = innerPadding,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                InfoSection(
-                    onClickPhoneNumber = onClickPhoneNumber,
-                    onClickEmailAddress = onClickEmailAddress,
-                    onClickAddress = onClickAddress
-                )
-                QualificationsSection()
-                WorkingExperienceSection()
-                EducationSection()
-                FormationsSection()
+                item {
+                    InfoSection(
+                        onClickPhoneNumber = onClickPhoneNumber,
+                        onClickEmailAddress = onClickEmailAddress,
+                        onClickAddress = onClickAddress
+                    )
+                    QualificationsSection()
+                    WorkingExperienceSection()
+                    EducationSection()
+                    FormationsSection()
+                }
             }
         }
     }
