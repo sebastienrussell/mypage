@@ -1,11 +1,11 @@
 package ca.russellmania.mypage.ui.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,10 +26,20 @@ fun InfoSection(
         phone = "(438) 403-9294",
         email = "russell.sebas@gmail.com"
     ),
-    onClickPhoneNumber: (phoneNumber: String) -> Unit = {},
-    onClickEmailAddress: (emailAddress: String) -> Unit = {},
-    onClickAddress: (address: String) -> Unit = {},
+    onPhoneNumberClick: (phoneNumber: String) -> Unit = {},
+    onEmailAddressClick: (emailAddress: String) -> Unit = {},
+    onAddressClick: (address: String) -> Unit = {},
 ) {
+    val nameTextStyle = MaterialTheme.typography.titleLarge.merge(
+        color = MaterialTheme.colorScheme.onBackground
+    )
+    val contactTextStyle = MaterialTheme.typography.titleMedium.merge(
+        color = MaterialTheme.colorScheme.primary
+    )
+    val smallContactTextStyle = MaterialTheme.typography.titleSmall.merge(
+        color = MaterialTheme.colorScheme.primary
+    )
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -39,19 +49,15 @@ fun InfoSection(
     ) {
         SelectionContainer {
             Text(
-                text = personalInfo.name,
-                style = MaterialTheme.typography.titleLarge.merge(
-                    color = MaterialTheme.colorScheme.onBackground
-                ),
+                text = AnnotatedString(text = personalInfo.name),
+                style = nameTextStyle
             )
         }
 
-        ClickableText(
+        Text(
+            modifier = Modifier.clickable { onAddressClick(personalInfo.address) },
             text = AnnotatedString(text = personalInfo.address),
-            style = MaterialTheme.typography.titleMedium.merge(
-                color = MaterialTheme.colorScheme.primary
-            ),
-            onClick = { onClickAddress(personalInfo.address) }
+            style = contactTextStyle
         )
 
         Row(
@@ -62,19 +68,15 @@ fun InfoSection(
             ),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            ClickableText(
+            Text(
+                modifier = Modifier.clickable { onPhoneNumberClick(personalInfo.phone) },
                 text = AnnotatedString(text = personalInfo.phone),
-                style = MaterialTheme.typography.titleSmall.merge(
-                    color = MaterialTheme.colorScheme.primary
-                ),
-                onClick = { onClickPhoneNumber(personalInfo.phone) }
+                style = smallContactTextStyle
             )
-            ClickableText(
+            Text(
+                modifier = Modifier.clickable { onEmailAddressClick(personalInfo.email) },
                 text = AnnotatedString(text = personalInfo.email),
-                style = MaterialTheme.typography.titleSmall.merge(
-                    color = MaterialTheme.colorScheme.primary
-                ),
-                onClick = { onClickEmailAddress(personalInfo.email) }
+                style = smallContactTextStyle
             )
         }
     }
