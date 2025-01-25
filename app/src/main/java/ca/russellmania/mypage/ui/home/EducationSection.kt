@@ -23,7 +23,7 @@ fun EducationSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
         SectionTitle(title = "Éducation")
         TitleWithDateRow(

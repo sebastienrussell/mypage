@@ -29,7 +29,7 @@ fun FormationsSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.Start
     ) {
         SectionTitle(title = "Formations")

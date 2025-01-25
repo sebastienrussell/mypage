@@ -9,10 +9,13 @@ import android.os.StrictMode.VmPolicy
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -20,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
+import androidx.compose.ui.unit.dp
 import ca.russellmania.mypage.ui.home.EducationSection
 import ca.russellmania.mypage.ui.home.FormationsSection
 import ca.russellmania.mypage.ui.home.InfoSection
@@ -67,7 +71,8 @@ class MainActivity : ComponentActivity() {
 @Preview(
     showBackground = true,
     showSystemUi = true,
-    device = "spec:width=411dp,height=891dp,orientation=landscape", group = "landscape",
+    device = "spec:width=411dp,height=891dp,orientation=landscape,cutout=punch_hole",
+    group = "landscape",
     uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL,
     wallpaper = Wallpapers.NONE
 )
@@ -85,24 +90,35 @@ fun HomeScreen(
     MyPageTheme {
         Scaffold(
             modifier = modifier.fillMaxSize(),
-            contentWindowInsets = WindowInsets.statusBars
+            contentWindowInsets = WindowInsets.displayCutout
         ) { innerPadding ->
             LazyColumn(
                 modifier = Modifier.consumeWindowInsets(innerPadding),
                 contentPadding = innerPadding,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                val spacersModifier = Modifier
+                    .fillMaxWidth()
+                    .height(16.dp)
                 item {
                     InfoSection(
                         onClickPhoneNumber = onClickPhoneNumber,
                         onClickEmailAddress = onClickEmailAddress,
                         onClickAddress = onClickAddress
                     )
-                    QualificationsSection()
-                    WorkingExperienceSection()
-                    EducationSection()
-                    FormationsSection()
                 }
+                item { Spacer(modifier = spacersModifier) }
+                item { QualificationsSection() }
+                item { Spacer(modifier = spacersModifier) }
+                item { WorkingExperienceSection() }
+                item { Spacer(modifier = spacersModifier) }
+                item { EducationSection() }
+                item { Spacer(modifier = spacersModifier) }
+                item { FormationsSection() }
+                // Footer
+                item { Spacer(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(32.dp)) }
             }
         }
     }

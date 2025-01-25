@@ -33,7 +33,7 @@ fun InfoSection(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(horizontal = 16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
@@ -85,5 +85,4 @@ data class PersonalInfo(
     val address: String = "",
     val phone: String = "",
     val email: String = ""
-
 )
