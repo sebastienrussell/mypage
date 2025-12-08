@@ -1,0 +1,81 @@
+{
+  "information": {
+    "name": "Sebastien Russell",
+    "address": "Mercier, QC, J6R 0G2",
+    "phone": "(438) 403-9294",
+    "email": "russell.sebas@gmail.com"
+  },
+  "qualifications": [
+    "Analyser et réaliser des fonctionnalités à partir d’un besoin",
+    "Guider, vulgariser, questionner et comprendre mes collègues de travail pour réaliser des fonctionnalités moderne et simple",
+    "Assurer la qualité des fonctionnalités codées",
+    "Contribuer aux revues de code en donnant des pistes d’amélioration",
+    "Préparer des ateliers d’amélioration de processus interne ou d’apprentissage collectif",
+    "Désir de toujours m’améliorer et me re-questionner pour peaufiner mes façons de travailler",
+    "Spécialisation dans le développement mobile (Android, Kotlin)"
+  ],
+  "experiences": [
+    {
+      "company": "Groupe Technologie Desjardins",
+      "jobs": [
+        {
+          "title": "Analyste-programmeur",
+          "subtitle": "Application AccèsD Android",
+          "date": "2021 - Présent",
+          "tasks": [
+            "Développer mes compétences Android et Kotlin",
+            "Réaliser et maintenir plusieurs solutions critiques pour les membres et clients comme Interac, Détail EOP, Détail CC, liste centralisées, ADN, authentification multi-facteur et DSD",
+            "Sécurisation du code mobile en restant à l’affût de nouvelle technologie",
+            "Contribution dans une librairie externe pour corriger un problème de code que nous avions depuis la pandémie",
+            "Travailler avec Kotlin, Android, Robolectric, Jetpack Compose et Material Design",
+            "Encadrer, soutenir et former les escouades de notre direction dans le développement de composantes « custom » en Android",
+            "Animer des rencontres pour inviter les employés du Mouvement à discuter entre eux pour trouver des solutions à des problèmes techniques"
+          ]
+        },
+        {
+          "title": "Analyste-programmeur",
+          "subtitle": "Développement AccèsD Backend",
+          "date": "2018 - 2021",
+          "tasks": [
+            "Développer et maintenir des services en Java dans l’infonuagique de Desjardins",
+            "Conceptualiser des bases de données applicatives pour les services développés",
+            "Comprendre et améliorer la réalité des consommateurs de nos services pour répondre à leur(s) besoin",
+            "Coder en « Test Driven Developpement » (TDD)",
+            "Tester l’ensemble du développement réalisé avec JUnit, Mokito, Powermock et Wiremock",
+            "Travailler avec SpringBoot, Redis, Swagger, Bouncy Castle, Postman, Angular et Java"
+          ]
+        },
+        {
+          "title": "Programmeur",
+          "subtitle": "Support AccèsD",
+          "date": "2016 - 2018",
+          "tasks": [
+            "Développer une autonomie pour la correction d’incident / problème dans AccèsD",
+            "Supporter plusieurs services de Desjardins 24h / 7jours de manière autonome",
+            "Discuter, vulgariser, comprendre et investiguer activement sur des ponts téléphoniques pour résoudre une problématique en urgence (P1-P2)",
+            "Aider une équipe de développement pour raffiner un processus de conciliation avec Interac",
+            "Développer mon réseau de contacts sur l’ensemble des produits offerts chez Desjardins",
+            "Travailler avec HPSM, Dynatrace, Java, Weblogic, Synapse, Portail Caisse, Portail Mouvement et Autosys"
+          ]
+        }
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "title": "DEC en technique de l'informatique de gestion",
+      "date": "2013 - 2016",
+      "school": "CÉGEP André-Laurendeau, Montréal, QC"
+    }
+  ],
+  "formations": [
+    {
+      "title": "Android Jetpack Compose",
+      "date": "Decembre 2023"
+    },
+    {
+      "title": "AngularJS",
+      "date": "Avril 2020"
+    }
+  ]
+}
