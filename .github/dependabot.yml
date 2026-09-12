@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: "/"
+    schedule:
+      interval: monthly
+    groups:
+      androidx-compose:
+        applies-to: version-updates
+        patterns:
+          - "androidx.*:*"
+        update-types:
+          - minor
+          - patch
