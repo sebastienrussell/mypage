@@ -142,7 +142,10 @@ private fun TimelinePeriod(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp, bottom = nodeSize + 8.dp),
+                    .padding(
+                        top = if (showTopNode) nodeSize + 8.dp else 8.dp,
+                        bottom = nodeSize + 8.dp
+                    ),
                 verticalArrangement = Arrangement.Top
             ) {
                 Text(
