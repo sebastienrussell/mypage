@@ -125,6 +125,7 @@ private fun TimelinePeriod(
     showTopNode: Boolean,
     contentDirection: LayoutDirection
 ) {
+    val nodeSize = timelineNodeSize()
     val periodDescription = "${job.title}, de ${job.startYear} à ${job.endYear.resolve(currentYear)}"
     Row(
         modifier = Modifier
@@ -141,7 +142,7 @@ private fun TimelinePeriod(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp, bottom = 24.dp),
+                    .padding(top = 8.dp, bottom = nodeSize + 8.dp),
                 verticalArrangement = Arrangement.Top
             ) {
                 Text(
