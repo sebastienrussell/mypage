@@ -1,6 +1,7 @@
 package ca.russellmania.mypage.ui.home
 
 import android.content.res.Configuration
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -225,20 +226,26 @@ private fun TimelineRail(
 
 @Composable
 private fun TimelineBoundaryNode(year: Int, nodeSize: Dp, modifier: Modifier = Modifier) {
-    Surface(
+    Box(
         modifier = modifier
             .size(nodeSize)
             .semantics { contentDescription = year.toString() },
-        shape = CircleShape,
-        color = MaterialTheme.colorScheme.primary,
-        contentColor = MaterialTheme.colorScheme.onPrimary
+        contentAlignment = Alignment.Center
     ) {
-        Box(contentAlignment = Alignment.Center) {
-            Text(
-                text = year.toString(),
-                style = MaterialTheme.typography.labelSmall,
-                fontWeight = FontWeight.Bold
-            )
+        Surface(
+            modifier = Modifier.size(nodeSize),
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.secondaryContainer,
+            contentColor = MaterialTheme.colorScheme.onSecondaryContainer,
+            border = BorderStroke(3.dp, MaterialTheme.colorScheme.primary)
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Text(
+                    text = year.toString(),
+                    style = MaterialTheme.typography.labelSmall,
+                    fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }
