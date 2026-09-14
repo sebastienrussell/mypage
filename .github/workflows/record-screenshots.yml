@@ -1,0 +1,47 @@
+name: Record visual baselines
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Git ref to render
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  record:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: temurin
+          cache: gradle
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Record candidate visual baselines
+        run: ./gradlew :app:recordRoborazziDebug
+      - name: Upload candidate visual baselines
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-visual-baselines-${{ github.run_id }}
+          path: app/src/test/screenshots/**/*.png
+          if-no-files-found: error
+          retention-days: 7
+      - name: Upload recording report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baseline-recording-report-${{ github.run_id }}
+          path: app/build/reports/roborazzi/**
+          if-no-files-found: ignore
+          retention-days: 7
