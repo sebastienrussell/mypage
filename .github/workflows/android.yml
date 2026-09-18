@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - uses: actions/checkout@v4
@@ -24,3 +24,19 @@ jobs:
       run: chmod +x gradlew
     - name: Run dependency update quality gate
       run: ./gradlew lint test assembleDebug
+    - name: Verify visual baselines
+      run: ./gradlew :app:verifyRoborazziDebug
+    - name: Upload visual test artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: visual-test-artifacts-${{ github.run_id }}
+        path: |
+          app/src/test/screenshots/**/*.png
+          app/build/outputs/roborazzi/**
+          app/build/reports/roborazzi/**
+          app/build/reports/tests/testDebugUnitTest/**
+          app/build/test-results/roborazzi/**
+          app/build/test-results/testDebugUnitTest/**
+        if-no-files-found: ignore
+        retention-days: 7
