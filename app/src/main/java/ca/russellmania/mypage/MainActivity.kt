@@ -34,10 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import ca.russellmania.mypage.ui.home.EducationSection
+import ca.russellmania.mypage.ui.home.CareerTimelineSection
 import ca.russellmania.mypage.ui.home.FormationsSection
 import ca.russellmania.mypage.ui.home.QualificationsSection
-import ca.russellmania.mypage.ui.home.WorkingExperienceSection
 import ca.russellmania.mypage.ui.theme.MyPageTheme
 
 class MainActivity : ComponentActivity() {
@@ -114,7 +113,7 @@ internal fun HomeScreenContent(
     onClickPhoneNumber: (phoneNumber: String) -> Unit = {},
     onClickEmailAddress: (emailAddress: String) -> Unit = {},
     onClickAddress: (address: String) -> Unit = {},
-    workingExperienceCurrentYear: Int? = null,
+    careerTimelineCurrentYear: Int? = null,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -168,10 +167,8 @@ internal fun HomeScreenContent(
             item { QualificationsSection() }
             item { Spacer(modifier = spacersModifier) }
             item {
-                WorkingExperienceSection(previewCurrentYear = workingExperienceCurrentYear)
+                CareerTimelineSection(previewCurrentYear = careerTimelineCurrentYear)
             }
-            item { Spacer(modifier = spacersModifier) }
-            item { EducationSection() }
             item { Spacer(modifier = spacersModifier) }
             item { FormationsSection() }
         }
