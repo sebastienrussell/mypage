@@ -172,13 +172,6 @@ private fun CareerPeriodContent(period: CareerPeriod) {
 
         is CareerPeriod.Education -> {
             Text(
-                text = "ÉDUCATION",
-                style = MaterialTheme.typography.labelMedium,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(bottom = 8.dp),
-            )
-            Text(
                 text = period.info.title,
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onBackground,
