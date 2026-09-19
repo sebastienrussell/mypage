@@ -5,7 +5,7 @@ Ce contexte décrit les concepts du portfolio personnel présentés dans l’app
 ## Language
 
 **Nœud temporel**:
-Un repère daté du parcours qui marque la frontière d’une période professionnelle ou scolaire, ou la date d’une formation. Un nœud porte une année; la frontière actuelle porte l’année courante calculée au moment de l’affichage.
+Un repère daté du parcours qui marque la frontière d’une période professionnelle ou scolaire, ou la date d’une formation. Il est relié aux autres nœuds d’une période continue et reste isolé lorsqu’il représente un événement ponctuel.
 _Avoid_: Pastille, jalon de parcours
 
 **Historique professionnel**:

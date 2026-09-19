@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,10 +55,7 @@ fun FormationsSection(
                         contentDirection = contentDirection,
                     )
                     if (index < formations.lastIndex) {
-                        Row(modifier = Modifier.fillMaxWidth()) {
-                            TimelineConnector(dashed = true)
-                            Spacer(modifier = Modifier.size(32.dp))
-                        }
+                        Spacer(modifier = Modifier.height(32.dp))
                     }
                 }
             }
@@ -79,14 +75,14 @@ private fun FormationTimelineEvent(
             .semantics {
                 contentDescription = "${formation.title}, ${formation.month} ${formation.year}"
             },
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         TimelineEventNode(year = formation.year)
         CompositionLocalProvider(LocalLayoutDirection provides contentDirection) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 8.dp, bottom = 8.dp),
+                    .padding(start = 12.dp),
             ) {
                 Text(
                     text = formation.title,
