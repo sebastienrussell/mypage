@@ -2,7 +2,7 @@
 
 The visual regression suite compares rendered application content with approved PNG baselines. It uses Roborazzi 1.74.0, Robolectric 4.16.1, Android API 36, native graphics, the Pixel 9 device profile, and the `fr-CA` locale.
 
-The production app still follows the device's dynamic color and current year. Tests disable dynamic color, choose light or dark mode explicitly, and pin the work-experience year to 2026.
+The production app still follows the device's dynamic color and current year. Tests disable dynamic color, choose light or dark mode explicitly, and pin the career-timeline year to 2026.
 
 ## Verify baselines
 
@@ -54,20 +54,19 @@ Do not approve baselines generated on Windows or macOS.
 
 ## Initial coverage
 
-The suite contains eight images:
+The suite contains seven images:
 
 1. Home-screen viewport in light mode.
 2. Home-screen viewport in dark mode.
 3. Qualifications section in light mode.
-4. Work-experience section in light mode.
-5. Education section in light mode.
-6. Formations section in light mode.
-7. A deterministic single-job work-experience section at the default font scale.
-8. The same single-job section at 2x font scale.
+4. Combined professional-and-school career timeline in light mode.
+5. Formations timeline in light mode.
+6. A deterministic single-job career timeline at the default font scale.
+7. The same single-job timeline at 2x font scale.
 
 System bars, scrolling or stitched full-page images, landscape, tablets, API 37 rendering, and the unused information section are outside this suite.
 
-Focused section captures retain the Pixel 9 width and density. The work-experience section uses a taller test canvas so its complete timeline is captured in one image; only the home-screen captures are constrained to the Pixel 9 viewport height.
+Focused section captures retain the Pixel 9 width and density. The career timeline uses a taller test canvas so its complete content is captured in one image; only the home-screen captures are constrained to the Pixel 9 viewport height.
 
 ## Add coverage
 
