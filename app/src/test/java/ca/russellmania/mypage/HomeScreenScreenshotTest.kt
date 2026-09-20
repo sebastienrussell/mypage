@@ -39,7 +39,7 @@ class HomeScreenScreenshotTest {
                 darkTheme = darkTheme,
                 dynamicColor = false,
             ) {
-                HomeScreenContent(workingExperienceCurrentYear = 2026)
+                HomeScreenContent(careerTimelineCurrentYear = 2026)
             }
         }
     }
