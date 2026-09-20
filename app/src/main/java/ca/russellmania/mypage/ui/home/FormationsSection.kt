@@ -2,14 +2,25 @@ package ca.russellmania.mypage.ui.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import ca.russellmania.mypage.ui.utils.SectionTitle
-import ca.russellmania.mypage.ui.utils.TitleWithDateRow
 
 @Composable
 @Preview(showBackground = true)
@@ -18,14 +29,17 @@ fun FormationsSection(
     formations: List<FormationInfo> = listOf(
         FormationInfo(
             title = "Android Jetpack Compose",
-            date = "Decembre 2023"
+            month = "Décembre",
+            year = 2023,
         ),
         FormationInfo(
             title = "AngularJS",
-            date = "Avril 2020"
-        )
-    )
+            month = "Avril",
+            year = 2020,
+        ),
+    ),
 ) {
+    val contentDirection = LocalLayoutDirection.current
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -33,18 +47,62 @@ fun FormationsSection(
         horizontalAlignment = Alignment.Start
     ) {
         SectionTitle(title = "Formations")
-        formations.forEach {
-            TitleWithDateRow(
-                modifier = Modifier.padding(4.dp),
-                title = it.title,
-                date = it.date
-            )
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            Column(modifier = Modifier.fillMaxWidth()) {
+                formations.forEachIndexed { index, formation ->
+                    FormationTimelineEvent(
+                        formation = formation,
+                        contentDirection = contentDirection,
+                    )
+                    if (index < formations.lastIndex) {
+                        Spacer(modifier = Modifier.height(32.dp))
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FormationTimelineEvent(
+    formation: FormationInfo,
+    contentDirection: LayoutDirection,
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Min)
+            .semantics {
+                contentDescription = "${formation.title}, ${formation.month} ${formation.year}"
+            },
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        TimelineEventNode(year = formation.year)
+        CompositionLocalProvider(LocalLayoutDirection provides contentDirection) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 12.dp),
+            ) {
+                Text(
+                    text = formation.title,
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
+                Text(
+                    text = formation.month,
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Normal,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.50f),
+                )
+            }
         }
     }
 }
 
 data class FormationInfo(
     val title: String = "",
-    val date: String = ""
+    val month: String = "",
+    val year: Int = 0,
 )
 

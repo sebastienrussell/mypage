@@ -55,14 +55,6 @@ class HomeSectionScreenshotTest {
     }
 
     @Test
-    fun educationSectionMatchesApprovedAppearance() {
-        setSectionContent {
-            EducationSection()
-        }
-        composeRule.onNodeWithTag(ScreenshotTag).captureExactRoboImage()
-    }
-
-    @Test
     fun formationsSectionMatchesApprovedAppearance() {
         setSectionContent {
             FormationsSection()
@@ -72,9 +64,9 @@ class HomeSectionScreenshotTest {
 
     @Test
     @Config(qualifiers = "+h2400dp")
-    fun workingExperienceSectionMatchesApprovedAppearance() {
+    fun careerTimelineSectionMatchesApprovedAppearance() {
         setSectionContent {
-            WorkingExperienceSection(previewCurrentYear = 2026)
+            CareerTimelineSection(previewCurrentYear = 2026)
         }
         composeRule.onNodeWithTag(ScreenshotTag).captureExactRoboImage()
     }
@@ -82,7 +74,7 @@ class HomeSectionScreenshotTest {
     @Test
     fun singleJobExperienceMatchesApprovedAppearance() {
         setSectionContent {
-            WorkingExperienceSection(
+            CareerTimelineSection(
                 workExperience = singleJobExperience,
                 previewCurrentYear = 2026,
             )
@@ -93,7 +85,7 @@ class HomeSectionScreenshotTest {
     @Test
     fun singleJobExperienceAtTwoTimesFontScaleMatchesApprovedAppearance() {
         setSectionContent(fontScale = 2f) {
-            WorkingExperienceSection(
+            CareerTimelineSection(
                 workExperience = singleJobExperience,
                 previewCurrentYear = 2026,
             )
