@@ -34,10 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.Wallpapers
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
-import ca.russellmania.mypage.ui.home.EducationSection
+import ca.russellmania.mypage.ui.home.CareerTimelineSection
 import ca.russellmania.mypage.ui.home.FormationsSection
 import ca.russellmania.mypage.ui.home.QualificationsSection
-import ca.russellmania.mypage.ui.home.WorkingExperienceSection
 import ca.russellmania.mypage.ui.theme.MyPageTheme
 
 class MainActivity : ComponentActivity() {
@@ -98,47 +97,65 @@ fun HomeScreen(
     onClickAddress: (address: String) -> Unit = {},
 ) {
     MyPageTheme {
-        Scaffold(
-            modifier = modifier.fillMaxSize(),
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text("Sebastien Russell", maxLines = 1, overflow = TextOverflow.Ellipsis)
-                    },
-                    scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
-                    actions = {
-                        IconButton(onClick = { onClickAddress("Mercier, QC, J6R 0G2") }) {
-                            Icon(
-                                imageVector = Icons.Filled.LocationOn,
-                                contentDescription = "Localized description"
-                            )
-                        }
-                        IconButton(onClick = { onClickEmailAddress("russell.sebas@gmail.com") }) {
-                            Icon(
-                                imageVector = Icons.Filled.Email,
-                                contentDescription = "Localized description"
-                            )
-                        }
-                        IconButton(onClick = { onClickPhoneNumber("(438) 403-9294") }) {
-                            Icon(
-                                imageVector = Icons.Filled.Call,
-                                contentDescription = "Localized description"
-                            )
-                        }
+        HomeScreenContent(
+            modifier = modifier,
+            onClickPhoneNumber = onClickPhoneNumber,
+            onClickEmailAddress = onClickEmailAddress,
+            onClickAddress = onClickAddress,
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun HomeScreenContent(
+    modifier: Modifier = Modifier,
+    onClickPhoneNumber: (phoneNumber: String) -> Unit = {},
+    onClickEmailAddress: (emailAddress: String) -> Unit = {},
+    onClickAddress: (address: String) -> Unit = {},
+    careerTimelineCurrentYear: Int? = null,
+) {
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Sebastien Russell", maxLines = 1, overflow = TextOverflow.Ellipsis)
+                },
+                scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior(),
+                actions = {
+                    IconButton(onClick = { onClickAddress("Mercier, QC, J6R 0G2") }) {
+                        Icon(
+                            imageVector = Icons.Filled.LocationOn,
+                            contentDescription = "Localized description"
+                        )
                     }
-                )
-            },
-        ) { innerPadding ->
-            LazyColumn(
-                modifier = Modifier
-                    .navigationBarsPadding()
-                    .consumeWindowInsets(innerPadding),
-                contentPadding = innerPadding,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                val spacersModifier = Modifier
-                    .fillMaxWidth()
-                    .height(16.dp)
+                    IconButton(onClick = { onClickEmailAddress("russell.sebas@gmail.com") }) {
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = "Localized description"
+                        )
+                    }
+                    IconButton(onClick = { onClickPhoneNumber("(438) 403-9294") }) {
+                        Icon(
+                            imageVector = Icons.Filled.Call,
+                            contentDescription = "Localized description"
+                        )
+                    }
+                }
+            )
+        },
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .navigationBarsPadding()
+                .consumeWindowInsets(innerPadding),
+            contentPadding = innerPadding,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            val spacersModifier = Modifier
+                .fillMaxWidth()
+                .height(16.dp)
 //                item {
 //                    InfoSection(
 //                        onPhoneNumberClick = onClickPhoneNumber,
@@ -146,15 +163,14 @@ fun HomeScreen(
 //                        onAddressClick = onClickAddress
 //                    )
 //                }
-                item { Spacer(modifier = spacersModifier) }
-                item { QualificationsSection() }
-                item { Spacer(modifier = spacersModifier) }
-                item { WorkingExperienceSection() }
-                item { Spacer(modifier = spacersModifier) }
-                item { EducationSection() }
-                item { Spacer(modifier = spacersModifier) }
-                item { FormationsSection() }
+            item { Spacer(modifier = spacersModifier) }
+            item { QualificationsSection() }
+            item { Spacer(modifier = spacersModifier) }
+            item {
+                CareerTimelineSection(previewCurrentYear = careerTimelineCurrentYear)
             }
+            item { Spacer(modifier = spacersModifier) }
+            item { FormationsSection() }
         }
     }
 }
