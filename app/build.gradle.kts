@@ -46,6 +46,7 @@ android {
             isIncludeAndroidResources = true
             all {
                 it.jvmArgs(
+                    "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
                     "--add-opens=java.base/java.lang=ALL-UNNAMED",
                     "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
                     "--add-opens=java.base/java.io=ALL-UNNAMED",
